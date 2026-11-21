@@ -1,0 +1,211 @@
+/* ==============================
+  1. Design Tokens and variables
+  =============================== */
+:root {
+  /* Typography */
+  --font-sans:
+    "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  /* font weights */
+  --font-normal: 400; /* Body font*/
+  --font-medium: 500; /*(buttons, links, labels, interactive elements)*/
+  --font-semibold: 600; /*(Headings)*/
+
+  /* Font Sizes & Line Heights (Static Scale) */
+  /* 12 /16 badge labels */
+  --text-xs: 0.75rem;
+  --leading-xs: 1rem;
+  /* 14 / 20 sm: badge labels, form(labels, placeholder, hint text) */
+  --text-sm: 0.875rem;
+  --leading-sm: 1.25rem;
+  /* 16 / 24 base: body, section labels, button labels */
+  --text-base: 1rem;
+  --leading-base: 1.5rem;
+  /* 18 / 28 lg: button labels */
+  --text-lg: 1.125rem;
+  --leading-lg: 1.75rem;
+  /* 20 / 28 xl: section subtitles */
+  --text-xl: 1.25rem;
+  --leading-xl: 1.75rem;
+  /* 24 / 32 2xl: card titles */
+  --text-2xl: 1.5rem;
+  --leading-2xl: 2rem;
+  /* 30 / 36 3xl: section titles(mobile) */
+  --text-3xl: 1.875rem;
+  --leading-3xl: 2.25rem;
+  /* 36 / 40 4xl: Main title(mobile) */
+  --text-4xl: 2.25rem;
+  --leading-4xl: 2.5rem;
+  /* 48 / 48 5xl: Main title(tablet), section titles(desktop and tablet) */
+  --text-5xl: 3rem;
+  --leading-5xl: 3rem;
+  /* 60 / 60px: Main title(desktop) */
+  --text-6xl: 3.75rem;
+  --leading-6xl: 3.75rem;
+
+  /* Semantic Typography Tokens (mobile first Default: 375px) */
+  --main-title-size: var(--text-4xl);
+  --main-title-leading: var(--leading-4xl);
+
+  --section-title-size: var(--text-3xl)
+    --section-title-leading: var(--leading-3xl);
+
+  /* Layout & Grid (mobile first Default : 375px) */
+  --spacing-unit: 4px;
+  --container-max-width: 100%;
+  --container-padding: 16px;
+  --grid-columns: 4;
+  --grid-gap: 16px;
+
+  /* Semantic Colors (Badge & Components) */
+  --color-neutral-bg: #f3f4f6;
+  --color-neutral-text: #374151;
+  --color-neutral-border: #e5e7eb;
+
+  --color-brand-bg: #eef2ff;
+  --color-brand-text: #4338ca;
+  --color-brand-border: #c7d2fe;
+
+  --color-success-bg: #ecfdf5;
+  --color-success-text: #047857;
+  --color-success-border: #a7f3d0;
+
+  --color-warning-bg: #fffbeb;
+  --color-warning-text: #b45309;
+  --color-warning-border: #fde68a;
+
+  --color-error-bg: #fef2f2;
+  --color-error-text: #b91c1c;
+  --color-error-border: #fecaca;
+}
+
+/* ======================================
+2. Breakpoints overrides
+======================================= */
+/* Tablet: 768px and up */
+@media (min-width: 768px) {
+  :root {
+    --grid-gap: 32px;
+    --grid-columns: 6;
+    --container-padding: 32px;
+    /* Semantic Typography updates for tablet */
+    --main-title-size: var(--text-5xl);
+    --main-title-leading: var(--leading-5xl);
+
+    --section-title-leading: var(--leading-5xl);
+    --section-title-size: var(--leading-5xl);
+  }
+}
+/* Desktop: 1440px and up */
+@media (min-width: 1440px) {
+  :root {
+    --grid-gap: 32px;
+    --grid-columns: 12;
+    --container-padding: 32px;
+    --container-max-width: 1280px;
+    /* Semantic Typography updates for desktop */
+    --main-title-size: var(--text-6xl);
+    --main-title-leading: var(--leading-6xl);
+
+    --section-title-leading: var(--leading-5xl);
+    --section-title-size: var(--leading-5xl);
+  }
+}
+
+/* ==========================================================================
+  3. BASE & LAYOUT CLASSES
+  ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  font-weight: var(--font-normal);
+  --webkit-font-smoothing: anitialiased;
+}
+
+.container {
+  width: var(--container-max-width);
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+  row-gap: calc(var(--spacing-unit) * 6);
+  align-items: center;
+}
+
+/* Badge showcase: 3 size columns per variant row, spanning the grid */
+.grid__item {
+  grid-column: span 1;
+  justify-self: center;
+}
+@media (min-width: 768px) {
+  .grid__item {
+    grid-column: span 2;
+  }
+}
+@media (min-width: 1440px) {
+  .grid__item {
+    grid-column: span 4;
+  }
+}
+
+.container {
+  padding-block: calc(var(--spacing-unit) * 8);
+}
+
+/* ==========================================================================
+   4. TYPOGRAPHY CLASSES
+========================================================================== */
+.main-title {
+  font-size: var(--main-title-size);
+  line-height: var(--main-title-leading);
+  font-weight: var(--font-semibold);
+}
+.section-title {
+  font-size: var(--main-section-size);
+  line-height: var(--main-section-leading);
+  font-weight: var(--font-semibold);
+}
+.section-subtitle {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: var(--font-semibold);
+}
+.card-title {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-2xl);
+}
+.section-label {
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  font-weight: var(--font-medium);
+}
+.form-label,
+.form-hint {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: var(--font-medium);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-medium);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
