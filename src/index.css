@@ -48,8 +48,8 @@
   --main-title-size: var(--text-4xl);
   --main-title-leading: var(--leading-4xl);
 
-  --section-title-size: var(--text-3xl)
-    --section-title-leading: var(--leading-3xl);
+  --section-title-size: var(--text-3xl);
+  --section-title-leading: var(--leading-3xl);
 
   /* Layout & Grid (mobile first Default : 375px) */
   --spacing-unit: 4px;
